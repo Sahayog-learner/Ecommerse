@@ -1,14 +1,10 @@
-import Homepage from './pages/homepage.components/homepage.component';
 import { BrowserRouter, Route,Routes} from 'react-router-dom';
 import React from 'react';
 import './App.css';
 
+import Homepage from './pages/homepage.components/homepage.component';
+import ShopPage from './pages/homepage.components/shop/shop.component';
 
-const HatsPage = () => (
-  <div>
-    <h1>HATS PAGE</h1>
-  </div>
-);
 
 
 function App() {
@@ -17,7 +13,7 @@ function App() {
      <BrowserRouter>
       <Routes>
         <Route exact path = '/' Component={Homepage} />
-        <Route path='/hats' Component={HatsPage} />
+        <Route path='/shop' Component={ShopPage} />
       </Routes>
      </BrowserRouter>
     </div>
