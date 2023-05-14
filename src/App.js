@@ -1,4 +1,4 @@
-import {  Route,Routes} from 'react-router-dom';
+import {  Route,Routes,Navigate} from 'react-router-dom';
 import React from 'react';
 import {connect} from 'react-redux';
 
@@ -46,11 +46,12 @@ class App extends React.Component {
         <Header/>
           
             <Routes>
-              <Route exact path = '/' Component={Homepage} />
-              <Route path='/shop' Component={ShopPage} />
-              <Route path='/signin' Component={SignInAndSignUpPage} />
-              
-            </Routes>
+              <Route exact path = '/' element={<Homepage/>} />
+              <Route path='/shop' element={<ShopPage/>} />
+              <Route path='/signin' element={this.props.currentUser ? <Navigate to='/'/> : <SignInAndSignUpPage/>} />
+            
+          
+        </Routes>
           
       </div>
     
@@ -58,13 +59,18 @@ class App extends React.Component {
   }
   
 }
+const mapStateToProps = ({user})=> ({
+  currentUser:user.currentUser
+})
+ 
+
 
 const mapDispatchToProps = dispatch => ( {
   setCurrentUser: user => dispatch(setCurrentUser(user))
 
 })
 
-export default connect(null,mapDispatchToProps) (App);
+export default connect(mapStateToProps,mapDispatchToProps) (App);
 
 
 
