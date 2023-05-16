@@ -12,8 +12,8 @@
       padding-right: 15px;
     }
       img {
-        width: 50%;
-        height: 50%;
+        width: 60%;
+        height: 40%;
       }
     
     .name,
@@ -23,7 +23,16 @@
     }
   
     .quantity {
-      padding-left: 20px;
+      display: flex;
+          
+    }
+
+    .quantity .arrow {
+      cursor: pointer;
+    }
+
+    .quantity .value {
+      margin: 0px 10px;
     }
   
     .remove-button {
