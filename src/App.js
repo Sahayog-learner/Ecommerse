@@ -1,7 +1,7 @@
 import {  Route,Routes,Navigate} from 'react-router-dom';
 import React from 'react';
 import {connect} from 'react-redux';
-
+import { createStructuredSelector } from 'reselect';
 import './App.css';
 
 import Homepage from './pages/homepage.components/homepage/homepage.component';
@@ -9,8 +9,10 @@ import ShopPage from './pages/homepage.components/shop/shop.component';
 import Header from './components/menu-item/header component/header.component';
 import SignInAndSignUpPage from './pages/homepage.components/sign-in-and-sign-up/sign-in-and-sign-up';
 import {auth, createUserProfileDocument} from './firebase/firebase.utils';
-import { setCurrentUser } from './redux/user/user.actions';
 
+import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selectors';
+import CheckoutPage from './pages/homepage.components/checkout/checkout.component';
 class App extends React.Component {
 
   unsubscibeFromAuth = null;
@@ -48,6 +50,7 @@ class App extends React.Component {
             <Routes>
               <Route exact path = '/' element={<Homepage/>} />
               <Route path='/shop' element={<ShopPage/>} />
+              <Route exact path ='/checkout' element={<CheckoutPage/>}></Route>
               <Route path='/signin' element={this.props.currentUser ? <Navigate to='/'/> : <SignInAndSignUpPage/>} />
             
           
@@ -59,8 +62,8 @@ class App extends React.Component {
   }
   
 }
-const mapStateToProps = ({user})=> ({
-  currentUser:user.currentUser
+const mapStateToProps = createStructuredSelector ({
+  currentUser:selectCurrentUser
 })
  
 
