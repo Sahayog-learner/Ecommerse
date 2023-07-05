@@ -4,14 +4,20 @@ import CollectionPage from "../collection/collection.component";
 
 import CollectionsOverview from'../../../components/collections-overview/collections-overview';
 
-const ShopPage = ({match}) =>(
+const ShopPage = ({match}) =>{
+        return(
         <div className="shop-page">
-                <Routes>
-                        <Route path='/' element={<CollectionsOverview/>} />
-                        <Route path=':collectionId' element={<CollectionPage/>} />
-        </Routes>
+                {/* <Routes>
+                <Route exact path = {`${match.path}`} Component={CollectionsOverview}/>
+                <Route  path ={`${match.path}/:collectionId`} Component={CollectionPage}/>
+                </Routes> */}
+                <Routes>                        
+                        <Route path ='/' element={<CollectionsOverview/>} />
+                        <Route path ='/shop/:collectionId' element={<CollectionPage/>} />
+                </Routes>
+
         </div>
-    );
+    )};
    
 
    
